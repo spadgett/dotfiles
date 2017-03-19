@@ -110,7 +110,9 @@ else
 endif
 
 " colors
-set termguicolors
+if exists("&termguicolors")
+  set termguicolors
+endif
 set background=dark
 silent! colorscheme molokai
 
