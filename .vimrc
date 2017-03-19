@@ -92,6 +92,7 @@ command! -bang WQ wq<bang>
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 
+" https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim#L33
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 " backup and tmp
@@ -112,6 +113,16 @@ endif
 set termguicolors
 set background=dark
 silent! colorscheme molokai
+
+" https://hamberg.no/erlend/posts/2014-03-09-change-vim-cursor-in-iterm.html
+if $TERM_PROGRAM =~ "iTerm.app"
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " vertical bar in insert mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " block in normal mode
+endif
+
+" change cursor back to block more quickly when leaving insert mode
+set ttimeout
+set ttimeoutlen=100
 
 augroup ft_asciidoc
   autocmd!
