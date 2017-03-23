@@ -60,7 +60,6 @@ set expandtab
 set ffs=unix,dos,mac
 set hidden
 set history=10000
-set incsearch
 set laststatus=1
 set listchars=tab:»\ ,eol:¬
 set mouse=a
@@ -78,6 +77,11 @@ set wildmenu
 set shiftwidth=2
 set smarttab
 set softtabstop=2
+
+" search
+set ignorecase
+set incsearch
+set smartcase
 
 " mappings
 command! -bang W w<bang>
