@@ -1,6 +1,6 @@
 *.a
 bindata.go
-
 bower_components/
 dist/
+dist.java/
 node_modules/
