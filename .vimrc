@@ -21,6 +21,7 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 " colors
+Plug 'ayu-theme/ayu-vim'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
@@ -118,7 +119,7 @@ if exists("&termguicolors")
   set termguicolors
 endif
 set background=dark
-silent! colorscheme molokai
+silent! colorscheme ayu
 
 " https://hamberg.no/erlend/posts/2014-03-09-change-vim-cursor-in-iterm.html
 if $TERM_PROGRAM =~ "iTerm.app"
