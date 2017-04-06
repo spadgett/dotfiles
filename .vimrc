@@ -41,11 +41,11 @@ else
 endif
 
 if executable('jshint')
-  let g:neomake_javascript_jshint_maker = {
-        \ 'args': ['--verbose'],
-        \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-        \ }
   let g:neomake_javascript_enabled_makers = ['jshint']
+endif
+
+if executable('tsc')
+  let g:neomake_typescript_enabled_makers = ['tsc']
 endif
 
 let g:vim_json_syntax_conceal = 0
@@ -175,6 +175,11 @@ augroup ft_markdown
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd FileType markdown setlocal spell
+augroup END
+
+augroup ft_typescript
+  autocmd!
+  autocmd BufWritePost,BufEnter *.ts Neomake
 augroup END
 
 augroup jshintrc
