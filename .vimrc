@@ -165,16 +165,16 @@ augroup ft_javascript
   autocmd BufWritePost,BufEnter *.js Neomake
 augroup END
 
-augroup ft_sh
-  autocmd!
-  autocmd FileType sh setlocal shiftwidth=4
-  autocmd FileType sh setlocal softtabstop=4
-augroup END
-
 augroup ft_markdown
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd FileType markdown setlocal spell
+augroup END
+
+augroup ft_sh
+  autocmd!
+  autocmd FileType sh setlocal shiftwidth=4
+  autocmd FileType sh setlocal softtabstop=4
 augroup END
 
 augroup ft_typescript
