@@ -32,11 +32,12 @@ if executable("rg")
   let g:ctrlp_user_command = 'rg --files  %s'
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
+  nnoremap <leader>g :silent execute "grep! -F " . shellescape(expand("<cword>")) <cr>:redraw!<cr>:copen<cr>
 elseif executable('ag')
   let g:ctrlp_user_command = 'ag %s --files-with-matches -g ""'
   set grepprg=ag\ --vimgrep
 else
-  " fall back to using git ls-files if ag is not available
+  " fall back to using git ls-files
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
 
