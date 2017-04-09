@@ -94,6 +94,8 @@ command! -bang QA qa<bang>
 command! -bang Wq wq<bang>
 command! -bang WQ wq<bang>
 
+command! -nargs=+ Grep execute 'silent grep! <args>' | redraw! | copen
+
 " %% expands to the current file's directory
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
