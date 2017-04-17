@@ -61,6 +61,7 @@ runtime! macros/matchit.vim
 set autoindent
 set autoread
 set backspace=indent,eol,start
+set cinoptions+=(0
 set complete-=i
 set cursorline
 set expandtab
