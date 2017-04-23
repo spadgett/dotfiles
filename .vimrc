@@ -6,7 +6,6 @@ else
 endif
 
 " general
-Plug 'benekastah/neomake'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'milkypostman/vim-togglelist'
 Plug 'tommcdo/vim-lion'
@@ -17,6 +16,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'w0rp/ale'
 
 " filetypes
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -33,7 +33,7 @@ Plug 'tomasr/molokai'
 
 call plug#end()
 
-if executable("rg")
+if executable('rg')
   let g:ctrlp_user_command = 'rg --files  %s'
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -49,14 +49,11 @@ else
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
 
-if executable('jshint')
-  let g:neomake_javascript_enabled_makers = ['jshint']
+if executable('goimports')
+  let g:go_fmt_command = 'goimports'
 endif
 
-if executable('tsc')
-  let g:neomake_typescript_enabled_makers = ['tsc']
-endif
-
+let g:ale_lint_on_text_changed = 'never'
 let g:vim_json_syntax_conceal = 0
 
 runtime! macros/matchit.vim
@@ -172,12 +169,6 @@ augroup ft_html
   autocmd FileType html setlocal indentkeys-=*<Return>
 augroup END
 
-augroup ft_javascript
-  autocmd!
-  " run jshint on save
-  autocmd BufWritePost,BufEnter *.js Neomake
-augroup END
-
 augroup ft_markdown
   autocmd!
   autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -188,11 +179,6 @@ augroup ft_sh
   autocmd!
   autocmd FileType sh setlocal shiftwidth=4
   autocmd FileType sh setlocal softtabstop=4
-augroup END
-
-augroup ft_typescript
-  autocmd!
-  autocmd BufWritePost,BufEnter *.ts Neomake
 augroup END
 
 augroup jshintrc
