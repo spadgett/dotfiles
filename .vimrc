@@ -78,6 +78,8 @@ set scrolloff=1
 set showbreak=↪
 set sidescrolloff=5
 set spelllang=en_us
+set splitbelow
+set splitright
 set ttyfast
 set wildmenu
 
