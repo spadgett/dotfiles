@@ -54,6 +54,10 @@ if executable('goimports')
 endif
 
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters = {
+\ 'html': ['htmlhint']
+\}
+
 let g:vim_json_syntax_conceal = 0
 
 runtime! macros/matchit.vim
