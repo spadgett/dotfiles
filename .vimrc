@@ -103,8 +103,6 @@ command! -bang QA qa<bang>
 command! -bang Wq wq<bang>
 command! -bang WQ wq<bang>
 
-command! -nargs=+ Grep execute 'silent grep! <args>' | redraw! | copen
-
 " %% expands to the current file's directory
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
@@ -197,6 +195,15 @@ augroup END
 augroup jshintrc
   autocmd!
   autocmd BufRead,BufNewFile .jshintrc set filetype=json
+augroup END
+
+augroup quickfix
+    autocmd!
+    " automatically open the location/quickfix window after :make, :grep,
+    " :lvimgrep and friends if there are valid locations/errors
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    cwindow
+    autocmd VimEnter        *     cwindow
 augroup END
 
 augroup vagrantfile
