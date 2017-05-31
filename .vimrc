@@ -74,6 +74,7 @@ set history=10000
 set laststatus=1
 set listchars=tab:»\ ,eol:¬
 set mouse=a
+set nojoinspaces
 set noswapfile
 set number
 set ruler
