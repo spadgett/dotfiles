@@ -13,4 +13,7 @@ export LANG=en_US.UTF-8
 export PAGER=less
 
 set -o vi
-bindkey -M vicmd '?' history-incremental-search-backward
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!{.git,dist}/*"'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

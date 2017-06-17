@@ -1,4 +1,5 @@
 *.a
+*.min.js
 bindata.go
 bower_components/
 dist/

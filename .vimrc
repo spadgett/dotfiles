@@ -6,7 +6,8 @@ else
 endif
 
 " General
-Plug 'ctrlpvim/ctrlp.vim'          " Fuzzy file finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'milkypostman/vim-togglelist' " `<leader>q` and `<leader>l` toggle quickfix and location lists
 Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
 Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
@@ -33,9 +34,24 @@ Plug 'tomasr/molokai'
 
 call plug#end()
 
-" Use ripgrep or the silver searcher if installed for grep and ctrlp
+" Use FZF for quickly navigating to files
+nnoremap <C-P> :Files<cr>
+
+" https://github.com/junegunn/fzf.vim/issues/273
+" Default options are --nogroup --column --color
+let s:ag_options = ' --smart-case --path-to-ignore $HOME/.ignore '
+
+command! -bang -nargs=* Ag
+      \ call fzf#vim#ag(
+      \   <q-args>,
+      \   s:ag_options,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \        : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0
+      \ )
+
+" Use ripgrep or the silver searcher if installed for grep
 if executable('rg')
-  let g:ctrlp_user_command = 'rg --files  %s'
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
   " grep word under cursor
@@ -43,11 +59,7 @@ if executable('rg')
   " grep word under cursor, ignore case
   nnoremap <leader>G :silent execute "grep! -i -F " . shellescape(expand("<cword>")) <cr>:redraw!<cr>
 elseif executable('ag')
-  let g:ctrlp_user_command = 'ag %s --files-with-matches -g ""'
   set grepprg=ag\ --vimgrep
-else
-  " Fall back to using git ls-files
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
 
 if executable('goimports')
