@@ -39,9 +39,9 @@ if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m,%f:%l:%m
   " grep word under cursor
-  nnoremap <leader>g :silent execute "grep! -F " . shellescape(expand("<cword>")) <cr>:redraw!<cr>:copen<cr>
+  nnoremap <leader>g :silent execute "grep! -F " . shellescape(expand("<cword>")) <cr>:redraw!<cr>
   " grep word under cursor, ignore case
-  nnoremap <leader>G :silent execute "grep! -i -F " . shellescape(expand("<cword>")) <cr>:redraw!<cr>:copen<cr>
+  nnoremap <leader>G :silent execute "grep! -i -F " . shellescape(expand("<cword>")) <cr>:redraw!<cr>
 elseif executable('ag')
   let g:ctrlp_user_command = 'ag %s --files-with-matches -g ""'
   set grepprg=ag\ --vimgrep
