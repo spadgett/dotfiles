@@ -60,10 +60,11 @@ if executable('goimports')
   let g:go_fmt_command = 'goimports'
 endif
 
-let g:ale_lint_on_text_changed = 'never'
+" Only use `htmlhint` to reduce noise for AngularJS views
 let g:ale_linters = {
 \ 'html': ['htmlhint']
 \}
+let g:ale_sign_column_always = 1
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']       " quick-scope highlight only when pressing these keys
 
