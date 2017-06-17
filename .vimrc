@@ -5,27 +5,27 @@ else
   call plug#begin('~/.vim/plugged')
 endif
 
-" general
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'milkypostman/vim-togglelist'
-Plug 'tommcdo/vim-lion'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'w0rp/ale'
+" General
+Plug 'ctrlpvim/ctrlp.vim'          " Fuzzy file finder
+Plug 'milkypostman/vim-togglelist' " `<leader>q` and `<leader>l` toggle quickfix and location lists
+Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
+Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
+Plug 'tpope/vim-eunuch'            " Commands like `:Move` for Linux
+Plug 'tpope/vim-fugitive'          " Git commands
+Plug 'tpope/vim-repeat'            " Repeat surround and other plugin commands
+Plug 'tpope/vim-rhubarb'           " GitHub utilities like `:Gbrowse`
+Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
+Plug 'tpope/vim-unimpaired'        " Bracket mappings
+Plug 'w0rp/ale'                    " Asynchronous linting
 
-" filetypes
+" Filetypes
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
-" colors
+" Colors
 Plug 'ayu-theme/ayu-vim'
 Plug 'jpo/vim-railscasts-theme'
 Plug 'sjl/badwolf'
@@ -33,6 +33,7 @@ Plug 'tomasr/molokai'
 
 call plug#end()
 
+" Use ripgrep or the silver searcher if installed for grep and ctrlp
 if executable('rg')
   let g:ctrlp_user_command = 'rg --files  %s'
   set grepprg=rg\ --vimgrep\ --no-heading
@@ -45,7 +46,7 @@ elseif executable('ag')
   let g:ctrlp_user_command = 'ag %s --files-with-matches -g ""'
   set grepprg=ag\ --vimgrep
 else
-  " fall back to using git ls-files
+  " Fall back to using git ls-files
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
 
@@ -58,47 +59,47 @@ let g:ale_linters = {
 \ 'html': ['htmlhint']
 \}
 
+" Don't conceal double quotes in JSON
 let g:vim_json_syntax_conceal = 0
 
+" Match HTML tags
 runtime! macros/matchit.vim
 
-set autoindent
-set autoread
+set autoindent                 " Copy indent from current line when starting new line
+set autoread                   " Detect file changes outside of vim
 set backspace=indent,eol,start
-set cinoptions+=(0
-set complete-=i
-set cursorline
-set expandtab
+set cinoptions+=(0             " Line up function arguments
+set cursorline                 " Higlight screen line of cursor
+set expandtab                  " Pressing tab inserts spaces
 set ffs=unix,dos,mac
-set hidden
-set history=10000
-set laststatus=1
+set hidden                     " Hide buffers instead of closing buffers
+set history=10000              " History of ':' commands and searches (10000 max)
+set laststatus=1               " Only show status bar if at least two windows
 set listchars=tab:»\ ,eol:¬
-set mouse=a
-set nojoinspaces
-set noswapfile
-set number
-set ruler
-set scrolloff=1
+set mouse=a                    " Use the mouse in all modes
+set nojoinspaces               " One space after sentences
+set number                     " Show line numbers
+set ruler                      " Show line and column of cursor in the status bar
+set scrolloff=1                " Keep at least one line above and below the cursor
 set showbreak=↪
-set sidescrolloff=5
+set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor
 set spelllang=en_us
-set splitbelow
-set splitright
-set ttyfast
-set wildmenu
+set splitbelow                 " Open horizontal splits below, instead of on top
+set splitright                 " Open vertical splits to the right, instead of the left
+set ttyfast                    " Assume a fast terminal, improves smoothness of rendering
+set wildmenu                   " Enable command-line completion
 
-" tabs
-set shiftwidth=2
-set smarttab
-set softtabstop=2
+" Tabs
+set shiftwidth=2               " Indent two spaces by default
+set smarttab                   " Insert spaces using 'shiftwidth' in front of a line
+set softtabstop=2              " Number of spaces that a `<Tab>` counts for
 
-" search
-set ignorecase
-set incsearch
-set smartcase
+" Search
+set ignorecase                 " Ignore case in search patterns. Use `/\C` for case-sensitive searches.
+set incsearch                  " Show pattern matches while searching. `<C-L>` mapping below to clear highlighting.
+set smartcase                  " Use a case-sensitive search when typing uppercase characters.
 
-" mappings
+" Correct typos like `:W` and `:Q`
 command! -bang W w<bang>
 command! -bang Q q<bang>
 command! -bang E e<bang>
@@ -114,10 +115,12 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 " https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim#L33
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
-" backup and tmp
-set backup
-set noswapfile
-set undofile
+" Backup and tmp
+set backup     " Make a backup before overwriting a file
+set noswapfile " Disable swapfiles used for crash recovery
+set undofile   " Save undo history across sessions
+
+" Note these directories must be created outside of Vim.
 if has('nvim')
   set backupdir=~/.local/share/nvim/backup
   set directory=~/.local/share/nvim/tmp
@@ -128,20 +131,20 @@ else
   set undodir=~/.vim/undo
 endif
 
-" colors
+" Colors
 if exists("&termguicolors")
   set termguicolors
 endif
-set background=dark
+set background=dark " Tell Vim my terminal has a dark background
 silent! colorscheme ayu
 
 " https://hamberg.no/erlend/posts/2014-03-09-change-vim-cursor-in-iterm.html
 if $TERM_PROGRAM =~ "iTerm.app"
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " vertical bar in insert mode
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " block in normal mode
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
-" change cursor back to block more quickly when leaving insert mode
+" Change cursor back to block more quickly when leaving insert mode
 set ttimeout
 set ttimeoutlen=100
 
@@ -155,6 +158,7 @@ augroup ft_gitcommit
   autocmd!
   autocmd FileType gitcommit setlocal spell
   autocmd FileType gitcommit setlocal spellcapcheck=""
+  " Recnogize numbered lists
   autocmd FileType gitcommit setlocal formatoptions+=n
 augroup END
 
@@ -168,8 +172,10 @@ augroup END
 
 augroup ft_html
   autocmd!
+  " Disable the custom format expression set by vim-javascript that causes
+  " problems using `gq` in HTML files
   autocmd FileType html setlocal formatexpr&
-  " don't indent previous line when pressing enter
+  " Don't indent previous line when pressing enter
   autocmd FileType html setlocal indentkeys-=*<Return>
 augroup END
 
@@ -192,8 +198,8 @@ augroup END
 
 augroup quickfix
     autocmd!
-    " automatically open the location/quickfix window after :make, :grep,
-    " :lvimgrep and friends if there are valid locations/errors
+    " Automatically open the location/quickfix window after `:make`, `:grep`,
+    " `:lvimgrep` and friends if there are valid locations/errors
     autocmd QuickFixCmdPost [^l]* cwindow
     autocmd QuickFixCmdPost l*    cwindow
     autocmd VimEnter        *     cwindow
