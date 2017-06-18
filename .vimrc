@@ -62,9 +62,18 @@ endif
 
 " Only use `htmlhint` to reduce noise for AngularJS views
 let g:ale_linters = {
-\ 'html': ['htmlhint']
-\}
-let g:ale_html_htmlhint_options = '--format=unix -r tag-pair,attr-no-duplication '
+      \ 'html': ['htmlhint']
+      \}
+let g:ale_html_htmlhint_options =
+      \ '--format=unix ' .
+      \ '-r ' .
+      \ 'attr-lowercase,' .
+      \ 'attr-no-duplication,' .
+      \ 'attr-value-double-quotes,' .
+      \ 'id-unique,' .
+      \ 'inline-style-disabled,' .
+      \ 'spec-char-escape,' .
+      \ 'tag-pair'
 let g:ale_html_htmlhint_use_global = 1
 let g:ale_sign_column_always = 1
 
