@@ -18,6 +18,7 @@ Plug 'tpope/vim-rhubarb'           " GitHub utilities like `:Gbrowse`
 Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
 Plug 'tpope/vim-unimpaired'        " Bracket mappings
 Plug 'w0rp/ale'                    " Asynchronous linting
+Plug 'kepbod/quick-scope'          " Fork of 'unblevable/quick-scope', which seems to be unmaintained now
 
 " Filetypes
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -70,6 +71,8 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
 \ 'html': ['htmlhint']
 \}
+
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']       " quick-scope highlight only when pressing these keys
 
 " Don't conceal double quotes in JSON
 let g:vim_json_syntax_conceal = 0
