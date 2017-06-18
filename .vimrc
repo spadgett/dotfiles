@@ -28,10 +28,15 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
 " Colors
+" http://colorswat.ch/vim
+Plug 'ajh17/Spacegray.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'jpo/vim-railscasts-theme'
+Plug 'morhetz/gruvbox'
+Plug 'nanotech/jellybeans.vim'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
+Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
@@ -151,6 +156,7 @@ if exists("&termguicolors")
   set termguicolors
 endif
 set background=dark " Tell Vim my terminal has a dark background
+let ayucolor="dark"
 silent! colorscheme ayu
 
 " https://hamberg.no/erlend/posts/2014-03-09-change-vim-cursor-in-iterm.html
