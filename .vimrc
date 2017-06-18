@@ -43,29 +43,17 @@ call plug#end()
 " Use FZF for quickly navigating to files
 nnoremap <C-P> :Files<cr>
 
-" https://github.com/junegunn/fzf.vim/issues/273
-" Default options are --nogroup --column --color
-let s:ag_options = ' --smart-case --path-to-ignore $HOME/.ignore '
-
-command! -bang -nargs=* Ag
-      \ call fzf#vim#ag(
-      \   <q-args>,
-      \   s:ag_options,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \        : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \   <bang>0
-      \ )
-
-" Use ripgrep or the silver searcher if installed for grep
+" Search with ripgrep or the silver searcher if installed
 if executable('rg')
-  set grepprg=rg\ --vimgrep\ --no-heading
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-  " grep word under cursor
-  nnoremap <leader>g :silent execute "grep! -F " . shellescape(expand("<cword>")) <cr>:redraw!<cr>
-  " grep word under cursor, ignore case
-  nnoremap <leader>G :silent execute "grep! -i -F " . shellescape(expand("<cword>")) <cr>:redraw!<cr>
+  set grepprg=rg\ --vimgrep
+  " FZF with ripgrep
+  let s:rg_command = 'rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --color "always" '
+  command! -bang -nargs=* F call fzf#vim#grep(s:rg_command .shellescape(<q-args>), 1, <bang>0)
+  " Find word under cursor
+  nnoremap <leader>g :F <C-R><C-W><CR>
 elseif executable('ag')
   set grepprg=ag\ --vimgrep
+  nnoremap <leader>g :Ag <C-R><C-W><CR>
 endif
 
 if executable('goimports')
