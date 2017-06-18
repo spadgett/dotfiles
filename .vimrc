@@ -64,6 +64,8 @@ endif
 let g:ale_linters = {
 \ 'html': ['htmlhint']
 \}
+let g:ale_html_htmlhint_options = '--format=unix -r tag-pair,attr-no-duplication '
+let g:ale_html_htmlhint_use_global = 1
 let g:ale_sign_column_always = 1
 
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']       " quick-scope highlight only when pressing these keys
