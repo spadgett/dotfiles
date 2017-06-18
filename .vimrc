@@ -48,7 +48,12 @@ if executable('rg')
   set grepprg=rg\ --vimgrep
   " FZF with ripgrep
   let s:rg_command = 'rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --color "always" '
-  command! -bang -nargs=* F call fzf#vim#grep(s:rg_command .shellescape(<q-args>), 1, <bang>0)
+  command! -bang -nargs=* F
+        \ call fzf#vim#grep(
+        \   s:rg_command . shellescape(<q-args>), 1,
+        \   <bang>0 ? fzf#vim#with_preview('up:60%')
+        \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+        \   <bang>0)
   " Find word under cursor
   nnoremap <leader>g :F <C-R><C-W><CR>
 elseif executable('ag')
