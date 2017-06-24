@@ -82,8 +82,6 @@ let g:ale_html_htmlhint_options =
 let g:ale_html_htmlhint_use_global = 1
 let g:ale_sign_column_always = 1
 
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']       " quick-scope highlight only when pressing these keys
-
 " Don't conceal double quotes in JSON
 let g:vim_json_syntax_conceal = 0
 
