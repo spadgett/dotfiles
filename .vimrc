@@ -159,8 +159,7 @@ if exists("&termguicolors")
   set termguicolors
 endif
 set background=dark " Tell Vim my terminal has a dark background
-let ayucolor="dark"
-silent! colorscheme ayu
+silent! colorscheme molokai
 
 if !has('nvim')
   set ttimeout
