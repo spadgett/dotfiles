@@ -122,6 +122,10 @@ set ignorecase                 " Ignore case in search patterns. Use `/\C` for c
 set incsearch                  " Show pattern matches while searching. `<C-L>` mapping below to clear highlighting.
 set smartcase                  " Use a case-sensitive search when typing uppercase characters.
 
+if has ('nvim')
+  set inccommand=nosplit       " Preview substitutions in Neovim
+endif
+
 " Correct typos like `:W` and `:Q`
 command! -bang W w<bang>
 command! -bang Q q<bang>
