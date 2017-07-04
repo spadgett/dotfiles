@@ -140,10 +140,25 @@ nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR
 set backup     " Make a backup before overwriting a file
 set undofile   " Save undo history across sessions
 
-" Note these directories must be created outside of Vim.
-set backupdir=~/.vim/backup
-set directory=~/.vim/tmp
-set undodir=~/.vim/undo
+" Automatically create backup, tmp, and undo directories if they don't exist
+function! s:MkdirIfNecessary(path)
+  if !isdirectory(a:path)
+    call mkdir(a:path, "p")
+  endif
+endfunction
+
+let s:vimdir = $HOME . "/.vim/"
+let s:backupdir = s:vimdir . "backup"
+call s:MkdirIfNecessary(s:backupdir)
+let &backupdir = s:backupdir
+
+let s:tmpdir = s:vimdir . "tmp"
+call s:MkdirIfNecessary(s:tmpdir)
+let &directory = s:tmpdir
+
+let s:undodir = s:vimdir . "undo"
+call s:MkdirIfNecessary(s:undodir)
+let &undodir = s:undodir
 
 " Colors
 if exists("&termguicolors")
