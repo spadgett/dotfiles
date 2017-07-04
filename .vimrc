@@ -94,7 +94,6 @@ set nojoinspaces               " One space after sentences
 set number                     " Show line numbers
 set ruler                      " Show line and column of cursor in the status bar
 set scrolloff=1                " Keep at least one line above and below the cursor
-set showbreak=↪
 set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor
 set spelllang=en_us
 set splitbelow                 " Open horizontal splits below, instead of on top
