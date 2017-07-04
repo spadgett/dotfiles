@@ -22,8 +22,7 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
-" Colors
-" http://colorswat.ch/vim
+" Colors -- http://colorswat.ch/vim
 Plug 'ajh17/Spacegray.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'jpo/vim-railscasts-theme'
@@ -80,7 +79,7 @@ let g:ale_sign_column_always = 1
 " Don't conceal double quotes in JSON
 let g:vim_json_syntax_conceal = 0
 
-" Match HTML tags
+" Match HTML tags, etc.
 runtime! macros/matchit.vim
 
 set autoindent                 " Copy indent from current line when starting new line
@@ -173,7 +172,7 @@ augroup ft_gitcommit
   autocmd!
   autocmd FileType gitcommit setlocal spell
   autocmd FileType gitcommit setlocal spellcapcheck=""
-  " Recnogize numbered lists
+  " Recognize numbered lists
   autocmd FileType gitcommit setlocal formatoptions+=n
 augroup END
 
