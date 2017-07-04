@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'kepbod/quick-scope'          " Fork of 'unblevable/quick-scope', which seems to be unmaintained now
-Plug 'milkypostman/vim-togglelist' " `<leader>q` and `<leader>l` toggle quickfix and location lists
 Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
 Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
 Plug 'tpope/vim-eunuch'            " Commands like `:Move` for Linux
