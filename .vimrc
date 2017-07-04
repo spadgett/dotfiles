@@ -89,6 +89,7 @@ set cinoptions+=(0             " Line up function arguments
 set cursorline                 " Higlight screen line of cursor
 set expandtab                  " Pressing tab inserts spaces
 set ffs=unix,dos,mac
+set formatoptions+=j           " Remove comment leader when joining lines
 set hidden                     " Hide buffers instead of closing buffers
 set history=10000              " History of ':' commands and searches (10000 max)
 set laststatus=1               " Only show status bar if at least two windows
