@@ -1,9 +1,5 @@
 " https://github.com/junegunn/vim-plug#installation
-if has('nvim')
-  call plug#begin('~/.local/share/nvim/plugged')
-else
-  call plug#begin('~/.vim/plugged')
-endif
+call plug#begin('~/.vim/plugged')
 
 " General
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -148,15 +144,9 @@ set noswapfile " Disable swapfiles used for crash recovery
 set undofile   " Save undo history across sessions
 
 " Note these directories must be created outside of Vim.
-if has('nvim')
-  set backupdir=~/.local/share/nvim/backup
-  set directory=~/.local/share/nvim/tmp
-  set undodir=~/.local/share/nvim/undo
-else
-  set backupdir=~/.vim/backup
-  set directory=~/.vim/tmp
-  set undodir=~/.vim/undo
-endif
+set backupdir=~/.vim/backup
+set directory=~/.vim/tmp
+set undodir=~/.vim/undo
 
 " Colors
 if exists("&termguicolors")
