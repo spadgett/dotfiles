@@ -139,7 +139,6 @@ nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR
 
 " Backup and tmp
 set backup     " Make a backup before overwriting a file
-set noswapfile " Disable swapfiles used for crash recovery
 set undofile   " Save undo history across sessions
 
 " Note these directories must be created outside of Vim.
