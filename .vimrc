@@ -80,6 +80,7 @@ set formatoptions+=j           " Remove comment leader when joining lines
 set hidden                     " Hide buffers instead of closing buffers
 set history=10000              " History of ':' commands and searches (10000 max)
 set laststatus=1               " Only show status bar if at least two windows
+set listchars=tab:>\ ,trail:-,nbsp:+
 set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences
 set number                     " Show line numbers
@@ -103,10 +104,9 @@ set ignorecase                 " Ignore case in search patterns. Use `/\C` for c
 set incsearch                  " Show pattern matches while searching. `<C-L>` mapping below to clear highlighting.
 set smartcase                  " Use a case-sensitive search when typing uppercase characters.
 
-" Unicode characters in listchars can hurt performance
-" https://github.com/tpope/vim-sensible/issues/57
-"set listchars=tab:»\ ,eol:¬
-set listchars=tab:>\ ,trail:-,nbsp:+
+" Backup and tmp
+set backup     " Make a backup before overwriting a file
+set undofile   " Save undo history across sessions
 
 if exists("&inccommand")
   set inccommand=nosplit       " Preview substitutions in Neovim
@@ -126,11 +126,13 @@ command! -bang WQ wq<bang>
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 
 " https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim#L33
-nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <Leader><Leader> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
-" Backup and tmp
-set backup     " Make a backup before overwriting a file
-set undofile   " Save undo history across sessions
+" Quickly navigate windows
+noremap <C-L> <C-W>l
+noremap <C-H> <C-W>h
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
 
 " Automatically create backup, tmp, and undo directories if they don't exist
 function! s:MkdirIfNecessary(path)
