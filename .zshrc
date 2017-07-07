@@ -10,7 +10,7 @@ source $ZSH/oh-my-zsh.sh
 
 setopt HIST_IGNORE_ALL_DUPS
 
-export EDITOR=vim
+export EDITOR=nvim
 export LANG=en_US.UTF-8
 export PAGER=less
 
