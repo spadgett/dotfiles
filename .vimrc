@@ -191,7 +191,6 @@ if has("autocmd")
     autocmd FileType go setlocal noexpandtab
     autocmd FileType go setlocal shiftwidth=8
     autocmd FileType go setlocal softtabstop=8
-    autocmd FileType go setlocal textwidth=100
   augroup END
 
   augroup ft_html
