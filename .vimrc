@@ -74,7 +74,6 @@ set autoread                   " Detect file changes outside of vim
 set backspace=indent,eol,start
 set cinoptions+=(0             " Line up function arguments
 set cursorline                 " Higlight screen line of cursor
-set expandtab                  " Pressing tab inserts spaces
 set ffs=unix,dos,mac
 set formatoptions+=j           " Remove comment leader when joining lines
 set hidden                     " Hide buffers instead of closing buffers
@@ -95,6 +94,7 @@ set ttyfast                    " Assume a fast terminal, improves smoothness of 
 set wildmenu                   " Enable command-line completion
 
 " Tabs
+set expandtab                  " Pressing tab inserts spaces
 set shiftwidth=2               " Indent two spaces by default
 set smarttab                   " Insert spaces using 'shiftwidth' in front of a line
 set softtabstop=2              " Number of spaces that a `<Tab>` counts for
