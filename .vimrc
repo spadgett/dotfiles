@@ -171,64 +171,66 @@ if !has('nvim')
   endif
 endif
 
-augroup ft_asciidoc
-  autocmd!
-  autocmd BufRead,BufNewFile *.adoc set filetype=asciidoc
-  autocmd FileType asciidoc setlocal spell
-augroup END
+if has("autocmd")
+  augroup ft_asciidoc
+    autocmd!
+    autocmd BufRead,BufNewFile *.adoc set filetype=asciidoc
+    autocmd FileType asciidoc setlocal spell
+  augroup END
 
-augroup ft_gitcommit
-  autocmd!
-  autocmd FileType gitcommit setlocal spell
-  autocmd FileType gitcommit setlocal spellcapcheck=""
-  " Recognize numbered lists
-  autocmd FileType gitcommit setlocal formatoptions+=n
-augroup END
+  augroup ft_gitcommit
+    autocmd!
+    autocmd FileType gitcommit setlocal spell
+    autocmd FileType gitcommit setlocal spellcapcheck=""
+    " Recognize numbered lists
+    autocmd FileType gitcommit setlocal formatoptions+=n
+  augroup END
 
-augroup ft_go
-  autocmd!
-  autocmd FileType go setlocal noexpandtab
-  autocmd FileType go setlocal shiftwidth=8
-  autocmd FileType go setlocal softtabstop=8
-  autocmd FileType go setlocal textwidth=100
-augroup END
+  augroup ft_go
+    autocmd!
+    autocmd FileType go setlocal noexpandtab
+    autocmd FileType go setlocal shiftwidth=8
+    autocmd FileType go setlocal softtabstop=8
+    autocmd FileType go setlocal textwidth=100
+  augroup END
 
-augroup ft_html
-  autocmd!
-  " Disable the custom format expression set by vim-javascript that causes
-  " problems using `gq` in HTML files
-  autocmd FileType html setlocal formatexpr&
-  " Don't indent previous line when pressing enter
-  autocmd FileType html setlocal indentkeys-=*<Return>
-augroup END
+  augroup ft_html
+    autocmd!
+    " Disable the custom format expression set by vim-javascript that causes
+    " problems using `gq` in HTML files
+    autocmd FileType html setlocal formatexpr&
+    " Don't indent previous line when pressing enter
+    autocmd FileType html setlocal indentkeys-=*<Return>
+  augroup END
 
-augroup ft_markdown
-  autocmd!
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-  autocmd FileType markdown setlocal spell
-augroup END
+  augroup ft_markdown
+    autocmd!
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd FileType markdown setlocal spell
+  augroup END
 
-augroup ft_sh
-  autocmd!
-  autocmd FileType sh setlocal shiftwidth=4
-  autocmd FileType sh setlocal softtabstop=4
-augroup END
+  augroup ft_sh
+    autocmd!
+    autocmd FileType sh setlocal shiftwidth=4
+    autocmd FileType sh setlocal softtabstop=4
+  augroup END
 
-augroup jshintrc
-  autocmd!
-  autocmd BufRead,BufNewFile .jshintrc set filetype=json
-augroup END
+  augroup jshintrc
+    autocmd!
+    autocmd BufRead,BufNewFile .jshintrc set filetype=json
+  augroup END
 
-augroup quickfix
-  autocmd!
-  " Automatically open the location/quickfix window after `:make`, `:grep`,
-  " `:lvimgrep` and friends if there are valid locations/errors
-  autocmd QuickFixCmdPost [^l]* cwindow
-  autocmd QuickFixCmdPost l*    cwindow
-  autocmd VimEnter        *     cwindow
-augroup END
+  augroup quickfix
+    autocmd!
+    " Automatically open the location/quickfix window after `:make`, `:grep`,
+    " `:lvimgrep` and friends if there are valid locations/errors
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l*    cwindow
+    autocmd VimEnter        *     cwindow
+  augroup END
 
-augroup vagrantfile
-  autocmd!
-  autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
-augroup END
+  augroup vagrantfile
+    autocmd!
+    autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
+  augroup END
+endif
