@@ -1,81 +1,102 @@
+let s:vimdir = $HOME . '/.vim/'
+let s:rg_cmd = 'rg -H --no-heading --vimgrep --hidden'
+
+function! s:warn(message)
+  echom('Warning: ' . a:message)
+endfunction
+
+" Only attempt to load plugins if vim-plug is installed
 " https://github.com/junegunn/vim-plug#installation
-call plug#begin('~/.vim/plugged')
+if !empty(glob(s:vimdir . 'autoload/plug.vim'))
+  call plug#begin(s:vimdir . 'plugged')
 
-" General
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'mhinz/vim-grepper'           " Better grep
-Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
-Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
-Plug 'tpope/vim-eunuch'            " Commands like `:Move` for Linux
-Plug 'tpope/vim-fugitive'          " Git commands
-Plug 'tpope/vim-repeat'            " Repeat surround and other plugin commands
-Plug 'tpope/vim-rhubarb'           " GitHub utilities like `:Gbrowse`
-Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
-Plug 'tpope/vim-unimpaired'        " Bracket mappings
-Plug 'w0rp/ale'                    " Asynchronous linting
+  " General
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'mhinz/vim-grepper'           " Better grep
+  Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
+  Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
+  Plug 'tpope/vim-eunuch'            " Commands like `:Move` for Linux
+  Plug 'tpope/vim-fugitive'          " Git commands
+  Plug 'tpope/vim-repeat'            " Repeat surround and other plugin commands
+  Plug 'tpope/vim-rhubarb'           " GitHub utilities like `:Gbrowse`
+  Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
+  Plug 'tpope/vim-unimpaired'        " Bracket mappings
+  Plug 'w0rp/ale'                    " Asynchronous linting
 
-" Filetypes
-Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+  " Filetypes
+  Plug 'elzr/vim-json', { 'for': 'json' }
+  Plug 'fatih/vim-go', { 'for': 'go' }
+  Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+  Plug 'othree/html5.vim', { 'for': 'html' }
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
-" Colors -- http://colorswat.ch/vim
-Plug 'ayu-theme/ayu-vim'
-Plug 'jpo/vim-railscasts-theme'
-Plug 'sjl/badwolf'
-Plug 'tomasr/molokai'
+  " Colors -- http://colorswat.ch/vim
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'jpo/vim-railscasts-theme'
+  Plug 'sjl/badwolf'
+  Plug 'tomasr/molokai'
 
-call plug#end()
+  call plug#end()
 
-" Use FZF for quickly navigating to files
-nnoremap <C-P> :Files<cr>
+  " Use FZF for quickly navigating to files
+  nnoremap <C-P> :Files<cr>
 
-" Initialize g:grepper with default values
-runtime plugin/grepper.vim
+  let g:grepper = {}
+  let g:grepper.open = 1
+  let g:grepper.quickfix = 1
+  let g:grepper.stop = 1000
+  let g:grepper.switch = 1
 
-" Add grep tools in order of preference if they're installed
-let g:grepper.tools = []
-let s:preferred_tools = ['rg', 'ag', 'grep', 'git']
-for tool in s:preferred_tools
-  if (executable(tool))
-    call add(g:grepper.tools, tool)
-    if tool ==# 'rg'
-      let g:grepper.rg.grepprg = 'rg -H --no-heading --vimgrep --hidden'
-      " Also set `grepprg` in case I use `:grep` (muscle memory)
-      let &grepprg = g:grepper.rg.grepprg
+  " Add grep tools in order of preference if they're installed
+  let g:grepper.tools = []
+  let s:preferred_tools = ['rg', 'ag', 'grep', 'git']
+  for tool in s:preferred_tools
+    if (executable(tool))
+      call add(g:grepper.tools, tool)
+      if tool ==# 'rg'
+        let g:grepper.rg = { 'grepprg': s:rg_cmd }
+        " Also set `grepprg` in case I use `:grep` (muscle memory)
+        let &grepprg = s:rg_cmd
+      endif
     endif
+  endfor
+
+  nnoremap gs :Grepper<cr>
+  xmap gs <plug>(GrepperOperator)
+
+  if executable('goimports')
+    let g:go_fmt_command = 'goimports'
   endif
-endfor
 
-nnoremap gs :Grepper<cr>
-xmap gs <plug>(GrepperOperator)
+  " Only use `htmlhint` to reduce noise for AngularJS views
+  let g:ale_linters = {
+        \ 'html': ['htmlhint']
+        \}
+  let g:ale_html_htmlhint_options =
+        \ '--format=unix ' .
+        \ '-r ' .
+        \ 'attr-lowercase,' .
+        \ 'attr-no-duplication,' .
+        \ 'attr-value-double-quotes,' .
+        \ 'id-unique,' .
+        \ 'inline-style-disabled,' .
+        \ 'spec-char-escape,' .
+        \ 'tag-pair'
+  let g:ale_html_htmlhint_use_global = 1
+  let g:ale_sign_column_always = 1
 
-if executable('goimports')
-  let g:go_fmt_command = 'goimports'
+  " Don't conceal double quotes in JSON
+  let g:vim_json_syntax_conceal = 0
+else
+  " Use VimEnter to show the message, which avoids the enter to continue prompt
+  call s:warn('vim-plug is not installed! See https://github.com/junegunn/vim-plug#installation')
+  " Even if Vim plug is not installed, try to set up grepprg
+  if executable('rg')
+    let &grepprg = s:rg_cmd
+    nnoremap gs :grep<Space>
+  endif
 endif
-
-" Only use `htmlhint` to reduce noise for AngularJS views
-let g:ale_linters = {
-      \ 'html': ['htmlhint']
-      \}
-let g:ale_html_htmlhint_options =
-      \ '--format=unix ' .
-      \ '-r ' .
-      \ 'attr-lowercase,' .
-      \ 'attr-no-duplication,' .
-      \ 'attr-value-double-quotes,' .
-      \ 'id-unique,' .
-      \ 'inline-style-disabled,' .
-      \ 'spec-char-escape,' .
-      \ 'tag-pair'
-let g:ale_html_htmlhint_use_global = 1
-let g:ale_sign_column_always = 1
-
-" Don't conceal double quotes in JSON
-let g:vim_json_syntax_conceal = 0
 
 " Match HTML tags, etc.
 runtime! macros/matchit.vim
@@ -151,41 +172,48 @@ inoremap <C-U> <C-G>u<C-u>
 " Automatically create backup, tmp, and undo directories if they don't exist
 function! s:MkdirIfNecessary(path)
   if !isdirectory(a:path)
-    call mkdir(a:path, "p")
+    call mkdir(a:path, 'p')
   endif
 endfunction
 
-let s:vimdir = $HOME . "/.vim/"
-let s:backupdir = s:vimdir . "backup"
+let s:backupdir = s:vimdir . 'backup'
 call s:MkdirIfNecessary(s:backupdir)
 let &backupdir = s:backupdir
 
-let s:tmpdir = s:vimdir . "tmp"
+let s:tmpdir = s:vimdir . 'tmp'
 call s:MkdirIfNecessary(s:tmpdir)
 let &directory = s:tmpdir
 
-let s:undodir = s:vimdir . "undo"
+let s:undodir = s:vimdir . 'undo'
 call s:MkdirIfNecessary(s:undodir)
 let &undodir = s:undodir
 
 " Colors
-if exists("&termguicolors")
+if exists('&termguicolors')
   set termguicolors
 endif
 set background=dark " Tell Vim my terminal has a dark background
-silent! colorscheme molokai
+
+try
+  colorscheme molokai
+catch
+  " Pick one of the less horrible out-of-the-box color schemes
+  colorscheme slate
+  " cursorline does not look good with slate
+  set nocursorline
+endtry
 
 if !has('nvim')
   set ttimeout
   set ttimeoutlen=100
   " https://hamberg.no/erlend/posts/2014-03-09-change-vim-cursor-in-iterm.html
-  if $TERM_PROGRAM ==# "iTerm.app"
+  if $TERM_PROGRAM ==# 'iTerm.app'
     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
   endif
 endif
 
-if has("autocmd")
+if has('autocmd')
   augroup ft_asciidoc
     autocmd!
     autocmd BufRead,BufNewFile *.adoc set filetype=asciidoc
