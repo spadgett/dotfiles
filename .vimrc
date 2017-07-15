@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
 " General
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'mhinz/vim-grepper'           " Better grep
 Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
 Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
 Plug 'tpope/vim-eunuch'            " Commands like `:Move` for Linux
@@ -32,15 +33,25 @@ call plug#end()
 " Use FZF for quickly navigating to files
 nnoremap <C-P> :Files<cr>
 
-" Search with ripgrep or the silver searcher if installed
-if executable('rg')
-  set grepprg=rg\ --vimgrep
-  " Find word under cursor
-  nnoremap <Leader>g :gr <C-R><C-W><CR>
-elseif executable('ag')
-  set grepprg=ag\ --vimgrep
-  nnoremap <Leader>g :Ag <C-R><C-W><CR>
-endif
+" Initialize g:grepper with default values
+runtime plugin/grepper.vim
+
+" Add grep tools in order of preference if they're installed
+let g:grepper.tools = []
+let s:preferred_tools = ['rg', 'ag', 'grep', 'git']
+for tool in s:preferred_tools
+  if (executable(tool))
+    call add(g:grepper.tools, tool)
+    if tool ==# 'rg'
+      let g:grepper.rg.grepprg = 'rg -H --no-heading --vimgrep --hidden'
+      " Also set `grepprg` in case I use `:grep` (muscle memory)
+      let &grepprg = g:grepper.rg.grepprg
+    endif
+  endif
+endfor
+
+nnoremap gs :Grepper<cr>
+xmap gs <plug>(GrepperOperator)
 
 if executable('goimports')
   let g:go_fmt_command = 'goimports'
