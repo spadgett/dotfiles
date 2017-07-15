@@ -134,6 +134,9 @@ noremap <C-H> <C-W>h
 noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 
+" Break undo before clearing the line.
+inoremap <C-U> <C-G>u<C-u>
+
 " Automatically create backup, tmp, and undo directories if they don't exist
 function! s:MkdirIfNecessary(path)
   if !isdirectory(a:path)
