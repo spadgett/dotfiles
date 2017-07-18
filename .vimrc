@@ -144,6 +144,12 @@ if exists("&inccommand")
   set inccommand=nosplit       " Preview substitutions in Neovim
 endif
 
+" Completion
+if filereadable('/usr/share/dict/words')
+  " Use `<C-X><C-K>` to complete words
+  set dictionary+=/usr/share/dict/words
+endif
+
 " Correct typos like `:W` and `:Q`
 command! -bang W w<bang>
 command! -bang Q q<bang>
@@ -167,7 +173,7 @@ noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 
 " Break undo before clearing the line.
-inoremap <C-U> <C-G>u<C-u>
+inoremap <C-U> <C-G>u<C-U>
 
 " Automatically create backup, tmp, and undo directories if they don't exist
 function! s:MkdirIfNecessary(path)
