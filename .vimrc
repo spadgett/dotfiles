@@ -11,10 +11,10 @@ if !empty(glob(s:vimdir . 'autoload/plug.vim'))
   call plug#begin(s:vimdir . 'plugged')
 
   " General
-  Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
-  Plug 'mhinz/vim-grepper'           " Better grep
+  Plug 'mhinz/vim-grepper'           " Better grep (TODO: look at ferret and other plugins)
+  Plug 'sgur/vim-editorconfig'       " Vimscript-only EditorConfig implementation
   Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
   Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
   Plug 'tpope/vim-eunuch'            " Commands like `:Move` for Linux
@@ -66,10 +66,6 @@ if !empty(glob(s:vimdir . 'autoload/plug.vim'))
   nnoremap gs :Grepper<cr>
   xmap gs <plug>(GrepperOperator)
 
-  if executable('goimports')
-    let g:go_fmt_command = 'goimports'
-  endif
-
   " Only use `htmlhint` to reduce noise for AngularJS views
   let g:ale_linters = {
         \ 'html': ['htmlhint']
@@ -114,7 +110,7 @@ set history=10000              " History of ':' commands and searches (10000 max
 set laststatus=1               " Only show status bar if at least two windows
 set listchars=tab:>\ ,trail:-,nbsp:+
 set mouse=a                    " Use the mouse in all modes
-set nojoinspaces               " One space after sentences
+set nojoinspaces               " One space after sentences after join
 set number                     " Show line numbers
 set ruler                      " Show line and column of cursor in the status bar
 set scrolloff=1                " Keep at least one line above and below the cursor
