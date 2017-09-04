@@ -217,46 +217,14 @@ if !has('nvim')
 endif
 
 if has('autocmd')
-  augroup ft_asciidoc
+  augroup ext_adoc
     autocmd!
     autocmd BufRead,BufNewFile *.adoc set filetype=asciidoc
-    autocmd FileType asciidoc setlocal spell
   augroup END
 
-  augroup ft_gitcommit
-    autocmd!
-    autocmd FileType gitcommit setlocal spell
-    autocmd FileType gitcommit setlocal spellcapcheck=""
-    " Recognize numbered lists
-    autocmd FileType gitcommit setlocal formatoptions+=n
-  augroup END
-
-  augroup ft_go
-    autocmd!
-    autocmd FileType go setlocal noexpandtab
-    autocmd FileType go setlocal shiftwidth=8
-    autocmd FileType go setlocal softtabstop=8
-  augroup END
-
-  augroup ft_html
-    autocmd!
-    " Disable the custom format expression set by vim-javascript that causes
-    " problems using `gq` in HTML files
-    autocmd FileType html setlocal formatexpr&
-    " Don't indent previous line when pressing enter
-    autocmd FileType html setlocal indentkeys-=*<Return>
-  augroup END
-
-  augroup ft_markdown
+  augroup ext_md
     autocmd!
     autocmd BufRead,BufNewFile *.md set filetype=markdown
-    autocmd FileType markdown setlocal spell
-  augroup END
-
-  augroup ft_sh
-    autocmd!
-    autocmd FileType sh setlocal shiftwidth=4
-    autocmd FileType sh setlocal softtabstop=4
   augroup END
 
   augroup jshintrc
