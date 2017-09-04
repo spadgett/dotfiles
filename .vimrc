@@ -11,6 +11,7 @@ if !empty(glob(s:vimdir . 'autoload/plug.vim'))
   call plug#begin(s:vimdir . 'plugged')
 
   " General
+  Plug 'editorconfig/editorconfig-vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'mhinz/vim-grepper'           " Better grep
