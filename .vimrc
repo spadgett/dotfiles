@@ -23,6 +23,7 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'pearofducks/ansible-vim'
 
 " Colors -- http://colorswat.ch/vim
 Plug 'ayu-theme/ayu-vim'
