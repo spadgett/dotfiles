@@ -5,6 +5,7 @@ call plug#begin(s:vimdir . 'plugged')
 " General
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'machakann/vim-highlightedyank'
 Plug 'romainl/vim-cool'            " Disable `hlsearch` automatically when done searching
 Plug 'sgur/vim-editorconfig'       " Vimscript-only EditorConfig implementation
 Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
