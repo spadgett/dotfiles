@@ -85,40 +85,40 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: true
 
-# Colors (Tomorrow Night Bright)
+# Colors (Molokai)
 colors:
   # Default colors
   primary:
     # molokai background
     background: '0x1b1d1e'
-    foreground: '0xeaeaea'
+    foreground: '0xa0a0a0'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
     text: '0x000000'
-    cursor: '0xffffff'
+    cursor: '0xa0a0a0'
 
   # Normal colors
   normal:
-    black:   '0x000000'
-    red:     '0xd54e53'
-    green:   '0xb9ca4a'
-    yellow:  '0xe6c547'
-    blue:    '0x7aa6da'
-    magenta: '0xc397d8'
-    cyan:    '0x70c0ba'
-    white:   '0xffffff'
+    black:   '0x1b1d1e'
+    red:     '0xf92672'
+    green:   '0x82b414'
+    yellow:  '0xfd971f'
+    blue:    '0x268bd2'
+    magenta: '0x8c54fe'
+    cyan:    '0x56c2d6'
+    white:   '0xccccc6'
 
   # Bright colors
   bright:
-    black:   '0x666666'
-    red:     '0xff3334'
-    green:   '0x9ec400'
-    yellow:  '0xe7c547'
-    blue:    '0x7aa6da'
-    magenta: '0xb77ee0'
-    cyan:    '0x54ced6'
-    white:   '0xffffff'
+    black:   '0x505354'
+    red:     '0xff5995'
+    green:   '0xb7eb46'
+    yellow:  '0xfeed6c'
+    blue:    '0x62ade3'
+    magenta: '0xbfa0fe'
+    cyan:    '0x94d8e5'
+    white:   '0xf8f8f2'
 
   # Dim colors (Optional)
   dim:
