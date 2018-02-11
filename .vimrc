@@ -157,26 +157,12 @@ let s:undodir = s:vimdir . 'undo'
 call s:MkdirIfNecessary(s:undodir)
 let &undodir = s:undodir
 
-let s:iterm = $TERM_PROGRAM ==# 'iTerm.app'
-
 " Colors
-if exists('&termguicolors') && s:iterm
+if exists('&termguicolors')
   set termguicolors
 endif
 set background=dark " Tell Vim my terminal has a dark background
 colorscheme molokai
-
-if !has('nvim')
-  set ttimeout
-  set ttimeoutlen=100
-
-  " https://hamberg.no/erlend/posts/2014-03-09-change-vim-cursor-in-iterm.html
-  " Neovim does this natively
-  if s:iterm
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-  endif
-endif
 
 if has('autocmd')
   augroup filetypes
