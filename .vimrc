@@ -80,7 +80,7 @@ set listchars=tab:>\ ,trail:-,nbsp:+
 set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences after join
 set number                     " Show line numbers
-set ruler                      " Show line and column of cursor in the status bar
+set noruler                    " Don't show line and column of cursor in the status bar
 set scrolloff=1                " Keep at least one line above and below the cursor
 set sessionoptions-=options
 set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor
