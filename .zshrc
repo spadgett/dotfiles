@@ -43,6 +43,8 @@ alias ls='ls -G'
 
 # Git aliases borrowed from oh my zsh
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
+alias gb='git branch'
+alias gbda='git branch --no-color --merged | command grep -vE "^(\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d'
 alias gc!='git commit -v --amend'
 alias gc='git commit -v'
 alias gca!='git commit -v -a --amend'
