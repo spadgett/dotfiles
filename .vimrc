@@ -24,6 +24,7 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx'
 Plug 'pearofducks/ansible-vim'
 
 " Colors -- http://colorswat.ch/vim
@@ -62,6 +63,8 @@ let g:ale_html_htmlhint_use_global = 1
 " elzr/vim-json configuration
 " Don't conceal double quotes in JSON
 let g:vim_json_syntax_conceal = 0
+
+let g:jsx_ext_required = 1
 
 " Match HTML tags, etc.
 runtime! macros/matchit.vim
