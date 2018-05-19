@@ -14,9 +14,16 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
+export GOPATH=~/go
 export LANG=en_US.UTF-8
 export PAGER=less
 export VISUAL=nvim
+
+path=(
+  $GOPATH/src/github.com/openshift/origin/_output/local/bin/darwin/amd64
+  /usr/local/opt/node@8/bin
+  $path
+)
 
 autoload -Uz compinit
 compinit
