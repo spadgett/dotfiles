@@ -1,6 +1,7 @@
 [user]
 	name = Samuel Padgett
 	email = spadgett@redhat.com
+	signingkey = 4D769795ADC1CAFC
 [push]
 	default = current
 [core]
