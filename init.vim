@@ -11,6 +11,7 @@ Plug 'tpope/vim-repeat'            " Repeat surround and other plugin commands
 Plug 'tpope/vim-rhubarb'           " GitHub utilities like `:Gbrowse`
 Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
 Plug 'tpope/vim-unimpaired'        " Bracket mappings
+Plug 'itchyny/lightline.vim'
 
 " Filetypes
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -51,6 +52,16 @@ let g:vim_json_syntax_conceal = 0
 
 let g:jsx_ext_required = 1
 
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
+
 " Match HTML tags, etc.
 runtime! macros/matchit.vim
 
@@ -58,12 +69,12 @@ set cinoptions+=(0             " Line up function arguments
 set fileformats=unix,dos,mac
 set hidden                     " Hide buffers instead of closing buffers
 set inccommand=nosplit         " Preview substitutions in Neovim
-set laststatus=1               " Only show status bar if at least two windows
 set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences after join
 set number                     " Show line numbers
 set nohlsearch
 set noruler                    " Don't show line and column of cursor in the status bar
+set noshowmode                 " lightline already displays the mode
 set scrolloff=1                " Keep at least one line above and below the cursor
 set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor
 set spelllang=en_us
