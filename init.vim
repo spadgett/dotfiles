@@ -11,7 +11,6 @@ Plug 'tpope/vim-repeat'            " Repeat surround and other plugin commands
 Plug 'tpope/vim-rhubarb'           " GitHub utilities like `:Gbrowse`
 Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
 Plug 'tpope/vim-unimpaired'        " Bracket mappings
-Plug 'w0rp/ale'                    " Asynchronous linting
 
 " Filetypes
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -22,6 +21,19 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'pearofducks/ansible-vim'
 
+" Language Server Protocol, Completions, and Linting
+"
+" Install Python for ncm2:
+" brew install python3
+" pip3 install --user --upgrade neovim
+"
+" Install the JavaScript / TypeScript language server:
+" yarn global add javascript-typescript-langserver
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'ncm2/ncm2'                   " Completions
+Plug 'roxma/nvim-yarp'             " Required for ncm2
+Plug 'w0rp/ale'                    " Asynchronous linting
+
 " Colors -- http://colorswat.ch/vim
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
@@ -30,28 +42,8 @@ call plug#end()
 
 " fzf configuration
 nnoremap <C-P> :Files<CR>
-nnoremap gb :Buffers<CR>
-nnoremap gh :History<CR>
-
-" w0rp/ale configuration
-" Only use `htmlhint` for HTML to reduce noise for AngularJS views
-" Avoid eslint for typescript since it is not configured correctly out of the box
-let g:ale_linters = {
-      \ 'html': ['htmlhint'],
-      \ 'typescript': ['tslint', 'tsserver', 'typecheck']
-      \}
-let g:ale_html_htmlhint_options =
-      \ '--format=unix ' .
-      \ '-r ' .
-      \ 'attr-lowercase,' .
-      \ 'attr-no-duplication,' .
-      \ 'attr-value-double-quotes,' .
-      \ 'id-unique,' .
-      \ 'inline-style-disabled,' .
-      \ 'spec-char-escape,' .
-      \ 'tag-pair'
-" Use the global htmlhint instead of searching `node_modules`
-let g:ale_html_htmlhint_use_global = 1
+nnoremap \b :Buffers<CR>
+nnoremap \h :History<CR>
 
 " elzr/vim-json configuration
 " Don't conceal double quotes in JSON
@@ -70,6 +62,7 @@ set laststatus=1               " Only show status bar if at least two windows
 set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences after join
 set number                     " Show line numbers
+set nohlsearch
 set noruler                    " Don't show line and column of cursor in the status bar
 set scrolloff=1                " Keep at least one line above and below the cursor
 set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor
@@ -143,4 +136,32 @@ augroup quickfix
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost l*    cwindow
   autocmd VimEnter        *     cwindow
+augroup END
+
+augroup ncm
+  autocmd!
+  autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup END
+
+" :help Ncm2PopupOpen
+set completeopt=noinsert,menuone,noselect
+
+" Don't fight commands like `:grep`
+let g:LanguageClient_diagnosticsList = 'Location'
+let g:LanguageClient_rootMarkers = ['package.json']
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'typescript.tsx': ['javascript-typescript-stdio'],
+    \ }
+
+augroup lsp
+  autocmd!
+  autocmd FileType javascript,typescript setlocal signcolumn=yes
+  autocmd FileType javascript,typescript setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+  autocmd FileType javascript,typescript nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
+  autocmd FileType javascript,typescript nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  autocmd FileType javascript,typescript nnoremap <buffer> <silent> \r :call LanguageClient#textDocument_rename()<CR>
+  autocmd FileType javascript,typescript nnoremap <buffer> \\ :call LanguageClient_contextMenu()<CR>
 augroup END
