@@ -85,6 +85,8 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
       \ },
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
 
 " Match HTML tags, etc.
@@ -94,6 +96,7 @@ set cinoptions+=(0             " Line up function arguments
 set fileformats=unix,dos,mac
 set hidden                     " Hide buffers instead of closing buffers
 set inccommand=nosplit         " Preview substitutions in Neovim
+set laststatus=1
 set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences after join
 set number                     " Show line numbers
