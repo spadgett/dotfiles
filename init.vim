@@ -30,10 +30,21 @@ Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.s
 Plug 'w0rp/ale'                    " Asynchronous linting
 
 " Colors -- http://colorswat.ch/vim
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
 
 call plug#end()
+
+" Colors
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_sign_column = 'bg0'
+
+set background=dark
+set termguicolors
+colorscheme gruvbox
 
 " fzf configuration
 nnoremap <C-P> :Files<CR>
@@ -51,6 +62,7 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
+      \ 'colorscheme': 'gruvbox',
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
       \ },
@@ -126,11 +138,6 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 " Break undo before clearing the line.
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-Space> <C-x><C-o>
-
-" Colors
-" Disable true color for now since default macOS terminal doesn't support it
-set termguicolors
-colorscheme molokai
 
 augroup filetypes
   autocmd!
