@@ -114,6 +114,7 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 
 " Break undo before clearing the line.
 inoremap <C-U> <C-G>u<C-U>
+inoremap <C-Space> <C-x><C-o>
 
 " Colors
 " Disable true color for now since default macOS terminal doesn't support it
