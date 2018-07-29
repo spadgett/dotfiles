@@ -89,6 +89,10 @@ endif
 set path-=/usr/include
 set path+=src
 set path+=app
+set suffixesadd+=.js
+set suffixesadd+=.jsx
+set suffixesadd+=.ts
+set suffixesadd+=.tsx
 
 " Search
 if executable('rg')
