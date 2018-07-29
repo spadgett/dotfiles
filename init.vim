@@ -68,9 +68,6 @@ let g:lightline = {
       \ },
       \ }
 
-" Match HTML tags, etc.
-runtime! macros/matchit.vim
-
 set cinoptions+=(0             " Line up function arguments
 set fileformats=unix,dos,mac
 set hidden                     " Hide buffers instead of closing buffers
