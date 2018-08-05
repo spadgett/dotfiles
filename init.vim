@@ -122,6 +122,7 @@ set suffixesadd+=.tsx
 " Search
 if executable('rg')
   set grepprg=rg\ --vimgrep
+  nnoremap \* :grep -F '<cword>'<CR>
 endif
 
 " Correct typos like `:W` and `:Q`
