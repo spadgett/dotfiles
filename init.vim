@@ -46,6 +46,11 @@ set background=dark
 set termguicolors
 colorscheme gruvbox
 
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'typscript': ['eslint'],
+\}
+
 " fzf configuration
 nnoremap <C-P> :Files<CR>
 nnoremap gb :Buffers<CR>
