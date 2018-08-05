@@ -22,6 +22,7 @@ export VISUAL=nvim
 path=(
   $GOPATH/src/github.com/openshift/origin/_output/local/bin/darwin/amd64
   $GOPATH/bin
+  /usr/local/bin
   $path
 )
 
