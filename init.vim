@@ -1,8 +1,10 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " General
+Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-highlightedyank'
 Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
 Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
@@ -11,7 +13,6 @@ Plug 'tpope/vim-repeat'            " Repeat surround and other plugin commands
 Plug 'tpope/vim-rhubarb'           " GitHub utilities like `:Gbrowse`
 Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
 Plug 'tpope/vim-unimpaired'        " Bracket mappings
-Plug 'itchyny/lightline.vim'
 
 " Filetypes
 Plug 'elzr/vim-json', { 'for': 'json' }
