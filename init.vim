@@ -84,6 +84,7 @@ set number                     " Show line numbers
 set nohlsearch
 set noruler                    " Don't show line and column of cursor in the status bar
 set noshowmode                 " lightline already displays the mode
+set tagcase=followscs
 set scrolloff=1                " Keep at least one line above and below the cursor
 set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor
 set spelllang=en_us
