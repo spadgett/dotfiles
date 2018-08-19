@@ -148,6 +148,9 @@ xnoremap & :&&<CR>
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-Space> <C-x><C-o>
 
+" Jump to tag for CSS class under cursor.
+nnoremap \<C-]> :tag .<C-R><C-F><CR>
+
 augroup filetypes
   autocmd!
   autocmd BufRead,BufNewFile *.adoc set filetype=asciidoc
