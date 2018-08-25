@@ -32,20 +32,29 @@ Plug 'w0rp/ale'                    " Asynchronous linting
 
 " Colors -- http://colorswat.ch/vim
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'ajh17/Spacegray.vim'
+Plug 'ayu-theme/ayu-vim'
+Plug 'chriskempson/base16-vim'
+Plug 'cocopon/lightline-hybrid.vim'
+Plug 'fenetikm/falcon'
+Plug 'mike-hearn/base16-vim-lightline'
 Plug 'morhetz/gruvbox'
+Plug 'neutaaaaan/iosvkem'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
+Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
 " Colors
+let ayucolor="dark"
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_sign_column = 'bg0'
 
 set background=dark
 set termguicolors
-colorscheme gruvbox
+colorscheme hybrid
 
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
@@ -68,7 +77,7 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'hybrid',
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
       \ },
