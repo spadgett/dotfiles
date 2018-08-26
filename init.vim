@@ -1,7 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " General
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
@@ -35,9 +34,7 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'ajh17/Spacegray.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
-Plug 'cocopon/lightline-hybrid.vim'
 Plug 'fenetikm/falcon'
-Plug 'mike-hearn/base16-vim-lightline'
 Plug 'morhetz/gruvbox'
 Plug 'neutaaaaan/iosvkem'
 Plug 'sjl/badwolf'
@@ -72,27 +69,15 @@ let g:vim_json_syntax_conceal = 0
 
 let g:jsx_ext_required = 1
 
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'colorscheme': 'hybrid',
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ },
-      \ }
-
 set cinoptions+=(0             " Line up function arguments
 set fileformats=unix,dos,mac
 set hidden                     " Hide buffers instead of closing buffers
 set inccommand=nosplit         " Preview substitutions in Neovim
+set laststatus=1
 set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences after join
 set number                     " Show line numbers
 set nohlsearch
-set noruler                    " Don't show line and column of cursor in the status bar
-set noshowmode                 " lightline already displays the mode
 set tagcase=followscs
 set scrolloff=1                " Keep at least one line above and below the cursor
 set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor
