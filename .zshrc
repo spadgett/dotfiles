@@ -19,13 +19,6 @@ export LANG=en_US.UTF-8
 export PAGER=less
 export VISUAL=nvim
 
-path=(
-  $GOPATH/src/github.com/openshift/origin/_output/local/bin/darwin/amd64
-  $GOPATH/bin
-  /usr/local/bin
-  $path
-)
-
 autoload -Uz compinit
 compinit
 
