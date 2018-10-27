@@ -22,12 +22,17 @@ Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'pearofducks/ansible-vim'
 
-" Language Server Protocol, Completions, and Linting
-"
-" Install the JavaScript / TypeScript language server:
-" yarn global add javascript-typescript-langserver
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+" Language Completion and Linting
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'w0rp/ale'                    " Asynchronous linting
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#ignore_sources = {
+      \ 'javascript': ['tag'],
+      \ 'typescript': ['tag'],
+      \ }
 
 " Colors -- http://colorswat.ch/vim
 Plug 'NLKNguyen/papercolor-theme'
@@ -161,22 +166,9 @@ augroup quickfix
   autocmd VimEnter        *     cwindow
 augroup END
 
-" Don't fight commands like `:grep`
-let g:LanguageClient_diagnosticsList = 'Location'
-let g:LanguageClient_rootMarkers = ['package.json']
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'typescript.tsx': ['javascript-typescript-stdio'],
-    \ }
-
 augroup lsp
   autocmd!
   autocmd FileType javascript,typescript setlocal signcolumn=yes
-  autocmd FileType javascript,typescript setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
-  autocmd FileType javascript,typescript nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-  autocmd FileType javascript,typescript nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  autocmd FileType javascript,typescript nnoremap <buffer> <silent> \r :call LanguageClient#textDocument_rename()<CR>
-  autocmd FileType javascript,typescript nnoremap <buffer> \\ :call LanguageClient_contextMenu()<CR>
+  autocmd FileType javascript,typescript nnoremap <buffer> <silent> K :TSDoc<CR>
+  autocmd FileType javascript,typescript nnoremap <buffer> <silent> gd <C-]>
 augroup END
