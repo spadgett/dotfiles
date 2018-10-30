@@ -5,6 +5,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-highlightedyank'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
 Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
 Plug 'tpope/vim-fugitive'          " Git commands
@@ -21,13 +22,6 @@ Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'pearofducks/ansible-vim'
-
-" Language Server Protocol, Completions, and Linting
-"
-" Install the JavaScript / TypeScript language server:
-" yarn global add javascript-typescript-langserver
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'w0rp/ale'                    " Asynchronous linting
 
 " Colors -- http://colorswat.ch/vim
 Plug 'NLKNguyen/papercolor-theme'
@@ -52,11 +46,6 @@ let g:gruvbox_sign_column = 'bg0'
 set background=dark
 set termguicolors
 colorscheme hybrid
-
-let g:ale_fixers = {
-\   'javascript': ['eslint'],
-\   'typscript': ['eslint'],
-\}
 
 " fzf configuration
 nnoremap <C-P> :Files<CR>
@@ -150,6 +139,7 @@ augroup filetypes
   autocmd BufRead,BufNewFile *.adoc set filetype=asciidoc
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile Dockerfile.* set filetype=dockerfile
+  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 augroup END
 
 augroup quickfix
@@ -161,22 +151,10 @@ augroup quickfix
   autocmd VimEnter        *     cwindow
 augroup END
 
-" Don't fight commands like `:grep`
-let g:LanguageClient_diagnosticsList = 'Location'
-let g:LanguageClient_rootMarkers = ['package.json']
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'typescript.tsx': ['javascript-typescript-stdio'],
-    \ }
-
-augroup lsp
+augroup coc
   autocmd!
   autocmd FileType javascript,typescript setlocal signcolumn=yes
-  autocmd FileType javascript,typescript setlocal formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
-  autocmd FileType javascript,typescript nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<CR>
-  autocmd FileType javascript,typescript nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-  autocmd FileType javascript,typescript nnoremap <buffer> <silent> \r :call LanguageClient#textDocument_rename()<CR>
-  autocmd FileType javascript,typescript nnoremap <buffer> \\ :call LanguageClient_contextMenu()<CR>
+  autocmd FileType javascript,typescript nmap <buffer> <silent> K :call CocAction('doHover')<CR>
+  autocmd FileType javascript,typescript nmap <buffer> <silent> gd <Plug>(coc-definition)
+  autocmd FileType javascript,typescript nmap <buffer> <silent> \r <Plug>(coc-rename)
 augroup END
