@@ -24,16 +24,10 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'pearofducks/ansible-vim'
 
 " Colors -- http://colorswat.ch/vim
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'ajh17/Spacegray.vim'
 Plug 'ayu-theme/ayu-vim'
-Plug 'chriskempson/base16-vim'
-Plug 'fenetikm/falcon'
 Plug 'morhetz/gruvbox'
-Plug 'neutaaaaan/iosvkem'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
-Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
@@ -45,7 +39,7 @@ let g:gruvbox_sign_column = 'bg0'
 
 set background=dark
 set termguicolors
-colorscheme hybrid
+colorscheme gruvbox
 
 " fzf configuration
 nnoremap <C-P> :Files<CR>
