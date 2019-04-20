@@ -27,6 +27,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'chriskempson/base16-vim'
 Plug 'morhetz/gruvbox'
+Plug 'nerdypepper/agila.vim'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
 
@@ -40,7 +41,7 @@ let g:gruvbox_sign_column = 'bg0'
 
 set background=dark
 set termguicolors
-colorscheme base16-tomorrow-night
+colorscheme agila
 
 " fzf configuration
 nnoremap <C-P> :Files<CR>
