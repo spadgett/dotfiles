@@ -64,6 +64,7 @@ set nohlsearch
 set tagcase=followscs
 set scrolloff=1                " Keep at least one line above and below the cursor
 set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor
+set signcolumn=yes
 set spelllang=en_us
 set splitbelow                 " Open horizontal splits below, instead of on top
 set splitright                 " Open vertical splits to the right, instead of the left
@@ -128,6 +129,37 @@ inoremap <C-Space> <C-x><C-o>
 " Jump to tag for CSS class under cursor.
 nnoremap \<C-]> :tag .<C-R><C-F><CR>
 
+" coc.nvim mappings
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> \r <Plug>(coc-rename)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 augroup filetypes
   autocmd!
   autocmd BufRead,BufNewFile *.adoc set filetype=asciidoc
@@ -143,12 +175,4 @@ augroup quickfix
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost l*    cwindow
   autocmd VimEnter        *     cwindow
-augroup END
-
-augroup coc
-  autocmd!
-  autocmd FileType javascript,typescript setlocal signcolumn=yes
-  autocmd FileType javascript,typescript nmap <buffer> <silent> K :call CocAction('doHover')<CR>
-  autocmd FileType javascript,typescript nmap <buffer> <silent> gd <Plug>(coc-definition)
-  autocmd FileType javascript,typescript nmap <buffer> <silent> \r <Plug>(coc-rename)
 augroup END
