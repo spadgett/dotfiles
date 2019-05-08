@@ -15,24 +15,20 @@ Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
 Plug 'tpope/vim-unimpaired'        " Bracket mappings
 
 " Filetypes
-Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'elzr/vim-json'
+Plug 'fatih/vim-go'
+Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx'
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
 
 " Colors -- http://colorswat.ch/vim
-Plug 'ayu-theme/ayu-vim'
 Plug 'morhetz/gruvbox'
-Plug 'sjl/badwolf'
-Plug 'tomasr/molokai'
 
 call plug#end()
 
 " Colors
-let ayucolor="dark"
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_sign_column = 'bg0'
