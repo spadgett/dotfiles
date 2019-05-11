@@ -1,19 +1,16 @@
 # Options
 # http://zsh.sourceforge.net/Doc/Release/Options.html
 setopt append_history
-setopt extended_history
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_verify
-setopt inc_append_history
 setopt pushd_ignore_dups
-setopt pushdminus
-setopt share_history
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
+export EDITOR=nvim
 export GOPATH=~/go
 export LANG=en_US.UTF-8
 export PAGER=less
@@ -22,7 +19,7 @@ export VISUAL=nvim
 autoload -Uz compinit
 compinit
 
-set -o vi
+bindkey -v
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden --smart-case --glob "!{.git,dist,node_modules,bower_components}/*"'
