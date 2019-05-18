@@ -24,6 +24,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
 
 " Colors -- http://colorswat.ch/vim
+Plug 'ayu-theme/ayu-vim'
+Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 
 call plug#end()
@@ -35,7 +37,7 @@ let g:gruvbox_sign_column = 'bg0'
 
 set background=dark
 set termguicolors
-colorscheme gruvbox
+colorscheme ayu
 
 " fzf configuration
 nnoremap <C-P> :Files<CR>
