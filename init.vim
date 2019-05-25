@@ -15,6 +15,7 @@ Plug 'tpope/vim-surround'          " `ys`, `cs`, `ds` for parens and quotes
 Plug 'tpope/vim-unimpaired'        " Bracket mappings
 
 " Filetypes
+Plug 'dag/vim-fish'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'leafgarland/typescript-vim'
