@@ -1,3 +1,4 @@
+# Common ignore file for tools like ripgrep.
 *.a
 *.min.js
 bindata.go
@@ -5,5 +6,4 @@ bindata.go
 .git/
 bower_components/
 dist/
-dist.java/
 node_modules/
