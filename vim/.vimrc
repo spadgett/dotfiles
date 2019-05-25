@@ -8,7 +8,6 @@ set fileformats=unix,dos,mac
 set formatoptions+=j           " Remove comment leader when joining lines
 set hidden                     " Hide buffers instead of closing buffers
 set history=10000              " History of ':' commands and searches (10000 max)
-set hlsearch
 set listchars=tab:>\ ,trail:-,nbsp:+
 set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences after join
@@ -41,15 +40,6 @@ set undofile                   " Save undo history across sessions
 if executable('rg')
   set grepprg=rg\ --vimgrep
 endif
-
-" Correct typos like `:W` and `:Q`
-command! -bang W w<bang>
-command! -bang Q q<bang>
-command! -bang E e<bang>
-command! -bang Qa qa<bang>
-command! -bang QA qa<bang>
-command! -bang Wq wq<bang>
-command! -bang WQ wq<bang>
 
 " Break undo before clearing the line.
 inoremap <C-U> <C-G>u<C-U>
