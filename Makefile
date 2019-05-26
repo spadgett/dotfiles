@@ -15,3 +15,11 @@ restow:
 .PHONY: delete
 delete:
 	stow --target $(HOME) --verbose --delete $(stow_dirs)
+
+.PHONY: plug-update
+plug-update:
+	nvim +PlugUpdate +qall
+
+.PHONY: plug-clean
+plug-clean:
+	nvim +PlugClean! +qall
