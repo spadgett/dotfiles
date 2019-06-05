@@ -60,6 +60,7 @@ set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences after join
 set number                     " Show line numbers
 set nohlsearch
+set nomodeline                 " Sidestep potential security vulnerabilities
 set tagcase=followscs
 set scrolloff=1                " Keep at least one line above and below the cursor
 set sidescrolloff=5            " Minimum columns to keep to the left and right of cursor

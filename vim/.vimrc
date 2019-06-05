@@ -11,6 +11,7 @@ set history=10000              " History of ':' commands and searches (10000 max
 set listchars=tab:>\ ,trail:-,nbsp:+
 set mouse=a                    " Use the mouse in all modes
 set nojoinspaces               " One space after sentences after join
+set nomodeline                 " Sidestep potential security vulnerabilities
 set number                     " Show line numbers
 set scrolloff=1                " Keep at least one line above and below the cursor
 set sessionoptions-=options
