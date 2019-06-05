@@ -24,31 +24,19 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
 
-" Colors -- http://colorswat.ch/vim
+" Colors
 Plug 'ayu-theme/ayu-vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'morhetz/gruvbox'
 
 call plug#end()
-
-" Colors
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_invert_selection = 0
-let g:gruvbox_sign_column = 'bg0'
 
 set background=dark
 set termguicolors
 colorscheme ayu
 
-" fzf configuration
-nnoremap <C-P> :Files<CR>
-nnoremap gb :Buffers<CR>
-nnoremap gh :History<CR>
-
-" elzr/vim-json configuration
-" Don't conceal double quotes in JSON
+" vim-json: don't conceal double quotes in JSON
 let g:vim_json_syntax_conceal = 0
 
+" vim-jsx: require `.jsx` extension for JSX highlighting and indentation
 let g:jsx_ext_required = 1
 
 set cinoptions+=(0             " Line up function arguments
@@ -123,14 +111,18 @@ xnoremap & :&&<CR>
 
 " Break undo before clearing the line.
 inoremap <C-U> <C-G>u<C-U>
-inoremap <C-Space> <C-x><C-o>
 
 " Jump to tag for CSS class under cursor.
 nnoremap \<C-]> :tag .<C-R><C-F><CR>
 
+" fzf mappings
+nnoremap <C-P> :Files<CR>
+nnoremap gb :Buffers<CR>
+nnoremap gh :History<CR>
+
 " coc.nvim mappings
 
-" use <tab> for trigger completion and navigate to the next complete item
+" Use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
