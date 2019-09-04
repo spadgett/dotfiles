@@ -6,6 +6,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-highlightedyank'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
 Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
 Plug 'tpope/vim-fugitive'          " Git commands
