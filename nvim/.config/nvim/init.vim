@@ -40,6 +40,13 @@ let g:vim_json_syntax_conceal = 0
 " vim-jsx: require `.jsx` extension for JSX highlighting and indentation
 let g:jsx_ext_required = 1
 
+" vim-prettier
+let g:prettier#autoformat = 0
+augroup prettier
+  autocmd!
+  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
+augroup END
+
 set cinoptions+=(0             " Line up function arguments
 set fileformats=unix,dos,mac
 set hidden                     " Hide buffers instead of closing buffers
