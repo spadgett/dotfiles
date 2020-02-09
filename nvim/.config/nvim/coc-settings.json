@@ -4,5 +4,6 @@
   },
   "eslint.autoFixOnSave": true,
   "javascript.preferences.quoteStyle": "single",
+  "prettier.eslintIntegration": true,
   "typescript.preferences.quoteStyle": "single"
 }

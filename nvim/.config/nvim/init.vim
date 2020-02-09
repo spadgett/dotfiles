@@ -5,7 +5,7 @@ Plug '/usr/local/opt/fzf'          " Use FZF installed by Homebrew
 Plug 'junegunn/fzf.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'machakann/vim-highlightedyank'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'tommcdo/vim-lion'            " Line up text with `gl<motion><char>`
 Plug 'tpope/vim-commentary'        " Comment and uncomment with `gcc` and `gc<motion>`
@@ -42,10 +42,6 @@ let g:jsx_ext_required = 1
 
 " vim-prettier
 let g:prettier#autoformat = 0
-augroup prettier
-  autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx Prettier
-augroup END
 
 set cinoptions+=(0             " Line up function arguments
 set fileformats=unix,dos,mac
