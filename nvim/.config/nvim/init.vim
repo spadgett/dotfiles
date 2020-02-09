@@ -71,7 +71,6 @@ set shiftwidth=2               " Indent two spaces by default
 set softtabstop=2              " Number of spaces that a `<Tab>` counts for
 
 " Search
-set ignorecase                 " Ignore case in search patterns. Use `/\C` for case-sensitive searches.
 set smartcase                  " Use a case-sensitive search when typing uppercase characters.
 
 " Backup and tmp
