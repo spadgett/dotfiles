@@ -1,9 +1,0 @@
-{
-  "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
-  },
-  "eslint.autoFixOnSave": true,
-  "javascript.preferences.quoteStyle": "single",
-  "prettier.eslintIntegration": true,
-  "typescript.preferences.quoteStyle": "single"
-}
