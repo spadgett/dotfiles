@@ -18,6 +18,25 @@ export VISUAL=nvim
 autoload -Uz compinit
 compinit
 
+# Lazy-load kubectl/oc completions since it's slow
+kubectl () {
+    command kubectl "$@"
+    if [[ -z $KUBECTL_COMPLETE ]]
+    then
+        source <(command kubectl completion zsh)
+        KUBECTL_COMPLETE=1
+    fi
+}
+
+oc () {
+    command oc "$@"
+    if [[ -z $OC_COMPLETE ]]
+    then
+        source <(command oc completion zsh)
+        OC_COMPLETE=1
+    fi
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
