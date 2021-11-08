@@ -24,4 +24,5 @@ set.shiftwidth = indent
 
 -- colors
 set.background = 'dark'
+set.termguicolors = true
 vim.cmd('colorscheme OceanicNext')
