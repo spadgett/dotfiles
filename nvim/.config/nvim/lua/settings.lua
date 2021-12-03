@@ -2,9 +2,7 @@ local set = vim.opt
 
 -- general options
 set.grepprg = 'rg --vimgrep'
-set.hidden = true
 set.inccommand = 'nosplit'
-set.joinspaces = false
 set.laststatus = 1
 set.modeline = false
 set.mouse = 'a'
