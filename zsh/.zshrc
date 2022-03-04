@@ -44,7 +44,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 alias ls='ls -G'
 alias gbda='git branch --no-color --merged | command grep -vE "^(\*|\s*(master|develop|dev)\s*$)" | command xargs -n 1 git branch -d'
 
-# npm install --global pure-prompt
-# https://github.com/sindresorhus/pure
+# brew install pure
+# https://github.com/sindresorhus/pure/issues/584
+fpath+=/opt/homebrew/share/zsh/site-functions
 autoload -U promptinit; promptinit
 prompt pure
