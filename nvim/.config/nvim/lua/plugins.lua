@@ -4,5 +4,5 @@ require 'paq' {
  'neovim/nvim-lspconfig';
  'nvim-lua/plenary.nvim';
  'nvim-telescope/telescope.nvim';
- {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'};
+ {'nvim-treesitter/nvim-treesitter', build=':TSUpdate'};
 }
